@@ -26,6 +26,7 @@ import DriveTsalesPage from "./pages/empresa/tsales/DriveTsalesPage";
 import PersonasTsalesPage from "./pages/empresa/tsales/PersonasTsalesPage";
 import SoporteTsalesPage from "./pages/empresa/tsales/SoporteTsalesPage";
 import TareasTsalesPage from "./pages/empresa/tsales/TareasTsalesPage";
+import ReportesTSalesPage from "./pages/empresa/tsales/ReportesTSalesPage"
 
 // ======================
 //        TVI
@@ -72,6 +73,7 @@ function App() {
       <Route path="/tsales/personas" element={<PersonasTsalesPage />} />
       <Route path="/tsales/soporte" element={<SoporteTsalesPage />} />
       <Route path="/tsales/tareas" element={<TareasTsalesPage />} />
+      <Route path="/tsales/reportes" element={<ReportesTSalesPage />} />
 
       {/* =====================
                 TVI

@@ -1,14 +1,269 @@
+/* ======================================================  
+   IMPORTS – SIEMPRE PRIMERO
+====================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
-
-/* opcional: full height */
-html, body, #root { height: 100%; }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+/* ====================================================== 
+   GLOBAL BASE
+====================================================== */
+html, body, #root {
+  height: 100%;
+}
+
 @layer base {
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif !important;
+    background-color: #ffffff;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+}
+
+
+/* ====================================================== 
+   ANIMACIONES GLOBALES
+====================================================== */
+.fade-in { animation: fadeIn .4s ease forwards; opacity: 0; }
+@keyframes fadeIn { 100% { opacity: 1; } }
+
+.fade-up { animation: fadeUp .45s ease forwards; opacity: 0; transform: translateY(12px); }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+.scale-in { animation: scaleIn .35s ease forwards; opacity: 0; transform: scale(.95); }
+@keyframes scaleIn { to { opacity: 1; transform: scale(1); } }
+
+.soft-bounce:hover { transform: translateY(-4px); transition: .25s ease-out; }
+
+.slide-right { animation: slideRight .35s ease forwards; opacity: 0; transform: translateX(-15px); }
+@keyframes slideRight { to { opacity: 1; transform: translateX(0); } }
+
+.slide-left { animation: slideLeft .35s ease forwards; opacity: 0; transform: translateX(15px); }
+@keyframes slideLeft { to { opacity: 1; transform: translateX(0); } }
+
+.pulse-slow { animation: pulseSlow 1.8s ease-in-out infinite; }
+@keyframes pulseSlow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+  100% { transform: scale(1); }
+}
+
+
+/* ======================================================
+   UI REFINEMENTS 
+====================================================== */
+
+/* Scroll elegante */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background-color: #bcbcbc; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background-color: #9a9a9a; }
+
+/* Placeholder corporativo */
+input::placeholder { color: #9ca3af; font-weight: 400; }
+
+/* Select corporativo */
+select { border-radius: 6px; border: 1px solid #d1d5db; padding: 6px; }
+
+/* Checkbox */
+input[type="checkbox"] { accent-color: var(--color-vprime); }
+
+/* Botones suaves */
+button { transition: .18s ease; }
+button:active { transform: scale(.97); }
+
+/* Tarjetas */
+.card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+
+/* Tabla corporativa */
+table { border-collapse: separate; border-spacing: 0 4px; }
+
+
+/* ======================================================
+   BRANDING COLORS
+====================================================== */
+:root {
+  --color-tsales: #4A90E2;
+  --color-vprime: #FF6B6B;
+  --color-infinet: #FFCF56;
+  --color-tvi-grey: #777777;
+}
+
+
+/* ======================================================
+   REUTILIZABLES CORPORATIVOS
+====================================================== */
+.nav-item {
+  @apply flex items-center gap-3 w-full py-2.5 px-3 rounded-lg 
+  text-gray-600 hover:bg-gray-100 hover:text-gray-900 font-medium transition;
+}
+
+.nav-item-active {
+  @apply flex items-center gap-3 w-full py-2.5 px-3 rounded-lg 
+  bg-red-100 text-red-600 border border-red-300 font-semibold;
+}
+
+/* Responsive: convertir navegación en mobile vertical */
+@media (max-width: 1024px) {
+  .nav-item,
+  .nav-item-active {
+    @apply py-3 text-lg;
+  }
+}
+
+/* RESPONSIVE PARA GRIDS */
+@media (max-width: 1024px) {
+  .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 600px) {
+  .grid-cols-4 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+}
+
+
+.row-task { @apply border-b last:border-0 hover:bg-gray-50 transition; }
+
+.badge-yellow { @apply bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-medium; }
+.badge-green { @apply bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-medium; }
+.badge-red { @apply bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-medium; }
+
+.input {
+  @apply w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-red-500;
+}
+
+.input-file {
+  @apply w-full border border-gray-300 rounded-lg px-2 py-2 bg-white;
+}
+
+.btn-red {
+  @apply px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600;
+}
+
+.btn-cancel {
+  @apply px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300;
+}
+
+
+@keyframes fadeIn { from {opacity:0} to {opacity:1} }
+.animate-fadeIn { animation: fadeIn .7s ease-in-out }
+
+@keyframes scaleIn { from {transform:scale(.92);opacity:0} to {transform:scale(1);opacity:1} }
+.animate-scaleIn { animation: scaleIn .35s ease-in-out }
+
+@keyframes progressBar { from {width:0} }
+.animate-progressBar { animation: progressBar 1.8s ease-out }
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+@keyframes floatY {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-35px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes floatX {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(45px); }
+  100% { transform: translateX(0px); }
+}
+
+@keyframes glowMove {
+  0% { transform: translate(-20px, -20px); }
+  50% { transform: translate(20px, 25px); }
+  100% { transform: translate(-20px, -20px); }
+}
+
+@keyframes bgmove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-fadeUp {
+  animation: fadeUp .5s ease forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.animate-scaleIn {
+  animation: scaleIn .4s ease forwards;
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* ==========================
+   COMPONENTES UI T-SALES
+========================== */
+
+/* Botones del panel */
+.btn-panel {
+  @apply flex flex-col items-center justify-center gap-2 bg-white border border-blue-200 text-blue-600 font-semibold p-4 rounded-xl shadow-sm hover:bg-blue-100 hover:scale-[1.03] active:scale-95 transition;
+}
+
+/* Cards KPI comerciales */
+.kpi-card {
+  @apply bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition hover:scale-[1.01];
+}
+
+/* Badges para estados */
+.badge-green {
+  @apply bg-green-100 text-green-700 px-2 py-1 rounded-lg text-xs;
+}
+.badge-yellow {
+  @apply bg-yellow-100 text-yellow-700 px-2 py-1 rounded-lg text-xs;
+}
+.badge-blue {
+  @apply bg-blue-100 text-blue-700 px-2 py-1 rounded-lg text-xs;
+}
+
+/* Animaciones suaves */
+.animate-pop {
+  animation: popIn .3s ease-out forwards;
+  opacity: 0;
+  transform: scale(.96);
+}
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hover cards de tablas */
+tr:hover td {
+  @apply bg-gray-50;
 }
