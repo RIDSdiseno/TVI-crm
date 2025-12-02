@@ -1,9 +1,7 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   Shield, 
   Lock, 
-  CheckCircle2, 
   ArrowLeft,
   Crown,
   Building2,
@@ -14,7 +12,7 @@ export default function RolesPermisosPage() {
   const navigate = useNavigate();
 
   // DATOS SIMULADOS DE ROLES CON JERARQUÍA
-  const [roles, setRoles] = useState([
+  const roles = [
     { 
       id: 1, 
       titulo: "CEO / Dueño", 
@@ -51,7 +49,7 @@ export default function RolesPermisosPage() {
       descripcion: "Supervisión de infraestructura, redes y soporte técnico.",
       color: "bg-white border-yellow-200 text-yellow-700 shadow-yellow-100" 
     }
-  ]);
+  ];
 
   // Función auxiliar para renderizar permisos visuales
   const renderPermisos = (acceso: string) => {

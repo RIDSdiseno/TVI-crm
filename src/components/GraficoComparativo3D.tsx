@@ -1,6 +1,4 @@
-import React from "react";
 import ReactApexChart from "react-apexcharts";
-import type { ApexOptions } from "apexcharts";
 
 export default function GraficoComparativo3D() {
   const series = [
@@ -21,9 +19,9 @@ export default function GraficoComparativo3D() {
     },
   ];
 
-  const options: ApexOptions = {
+  const options = {
     chart: {
-      type: "bar",
+      type: "bar" as const,
       height: 350,
       animations: {
         enabled: true,
@@ -74,7 +72,7 @@ export default function GraficoComparativo3D() {
       borderColor: "#e5e7eb",
     },
     legend: {
-      position: "bottom",
+      position: "bottom" as const,
       fontSize: "14px",
     },
     tooltip: {

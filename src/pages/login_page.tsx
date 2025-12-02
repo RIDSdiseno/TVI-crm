@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 const fakeUsers = [
   { email: "admin@tvi.cl", pass: "admin123", role: "admin" },
@@ -13,14 +12,12 @@ const fakeUsers = [
 ];
 
 export default function LoginPage() {
-  const navigate = useNavigate();
-
   const [showPwd, setShowPwd] = useState(false);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
 
     const user = fakeUsers.find((u) => u.email === email && u.pass === pwd);

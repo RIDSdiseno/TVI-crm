@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   BarChart,
   Bar,
@@ -319,7 +319,7 @@ export default function DashboardArea({ area }: DashboardProps) {
                 >
                   {data.estado.map((entry: any, index: number) => (
                     <Cell
-                      key={`cell-${index}`}
+                      key={`cell-${entry?.name ?? index}`}
                       fill={COLORS_ESTADO[index % COLORS_ESTADO.length]}
                     />
                   ))}

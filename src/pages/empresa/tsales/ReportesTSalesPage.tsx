@@ -1,26 +1,19 @@
-import React from "react"
 import { useNavigate } from "react-router-dom"
 import {
   Users,
   TrendingUp,
   BarChart3,
-  Target,
-  Medal,
   Phone,
   ClipboardList,
   LifeBuoy,
-  Settings,
   FileText,
-  FolderKanban,
-  CloudUpload,
-  BarChart2,
-  Briefcase
+  BarChart2
 } from "lucide-react"
 
 import {
   LineChart, Line, BarChart, Bar,
   XAxis, YAxis, CartesianGrid, Tooltip,
-  Legend, ResponsiveContainer, AreaChart, Area,
+  Legend, ResponsiveContainer,
   PieChart, Pie, Cell
 } from "recharts"
 

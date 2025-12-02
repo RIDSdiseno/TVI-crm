@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Users,
@@ -208,7 +208,7 @@ export default function GestionPersonalPage() {
     }
   };
 
-  const guardarUsuario = (e: React.FormEvent) => {
+  const guardarUsuario = (e: FormEvent) => {
     e.preventDefault();
 
     // Validaciones básicas

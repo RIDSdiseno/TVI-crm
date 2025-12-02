@@ -1,15 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  TrendingUp,
-  Users,
-  BarChart3,
-  Network,
-  Building2,
-  ShieldCheck,
-  UserCog,
-  Activity,
-} from "lucide-react";
+import { Activity, Network, ShieldCheck, TrendingUp, UserCog } from "lucide-react";
 import GraficoComparativo3D from "../../components/GraficoComparativo3D";
 import ReactApexChart from "react-apexcharts";
 
@@ -45,8 +35,8 @@ export default function SeleccionEmpresaPage() {
   ];
 
   const crecimientoOpt = {
-    chart: { type: "area", height: 250, animations: { speed: 900 } },
-    stroke: { curve: "smooth", width: 4 },
+    chart: { type: "area" as const, height: 250, animations: { speed: 900 } },
+    stroke: { curve: "smooth" as const, width: 4 },
     xaxis: {
       categories: [
         "Ene",
@@ -64,7 +54,7 @@ export default function SeleccionEmpresaPage() {
       ],
     },
     dataLabels: { enabled: false },
-    legend: { position: "bottom" },
+    legend: { position: "bottom" as const },
     fill: {
       type: "gradient",
       gradient: { opacityFrom: 0.4, opacityTo: 0.9 },
@@ -77,9 +67,9 @@ export default function SeleccionEmpresaPage() {
 
   const donutSeries = [45, 35, 20]; // TSales — VPrime — Infinet
   const donutOpt = {
-    chart: { type: "donut", height: 260 },
+    chart: { type: "donut" as const, height: 260 },
     labels: ["TSales", "VPrime", "Infinet"],
-    legend: { position: "bottom" },
+    legend: { position: "bottom" as const },
     colors: ["#2563eb", "#dc2626", "#ca8a04"],
   };
 
@@ -89,7 +79,7 @@ export default function SeleccionEmpresaPage() {
 
   const radialSeries = [89, 94, 97];
   const radialOpt = {
-    chart: { type: "radialBar", height: 260 },
+    chart: { type: "radialBar" as const, height: 260 },
     labels: ["TSales %", "VPrime %", "Infinet %"],
     colors: ["#2563eb", "#dc2626", "#ca8a04"],
     plotOptions: {

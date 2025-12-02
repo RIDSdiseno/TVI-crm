@@ -1,13 +1,10 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import {
   Users,
   FileText,
   ClipboardList,
   LifeBuoy,
-  FolderKanban,
-  CloudUpload,
-  Bell,
   Settings,
   BarChart2,
   Search,
@@ -15,8 +12,7 @@ import {
   Eye,
   UserCheck,
   UserX,
-  Phone,
-  DollarSign
+  Phone
 } from "lucide-react"
 
 export default function PersonasTSalesPage() {
