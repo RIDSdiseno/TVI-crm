@@ -6,6 +6,8 @@ import {
   BarChart3,
   Network,
   Building2,
+  ShieldCheck,
+  UserCog,
   Activity,
 } from "lucide-react";
 import GraficoComparativo3D from "../../components/GraficoComparativo3D";
@@ -18,6 +20,7 @@ export default function SeleccionEmpresaPage() {
     if (empresa === "t") navigate("/tsales/home");
     if (empresa === "v") navigate("/vprime/home");
     if (empresa === "i") navigate("/infinet/home");
+    if (empresa === "Super Admin") navigate("/GestionPersonalPage");
   };
 
   // ==========================
@@ -44,7 +47,22 @@ export default function SeleccionEmpresaPage() {
   const crecimientoOpt = {
     chart: { type: "area", height: 250, animations: { speed: 900 } },
     stroke: { curve: "smooth", width: 4 },
-    xaxis: { categories: ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"] },
+    xaxis: {
+      categories: [
+        "Ene",
+        "Feb",
+        "Mar",
+        "Abr",
+        "May",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dic",
+      ],
+    },
     dataLabels: { enabled: false },
     legend: { position: "bottom" },
     fill: {
@@ -86,20 +104,20 @@ export default function SeleccionEmpresaPage() {
 
   return (
     <div className="w-full h-screen flex bg-white text-gray-800">
-
       {/* ========================= SIDEBAR ========================= */}
-      <aside className="w-72 bg-gray-50 border-r border-gray-200 shadow-md flex flex-col p-6">
-        <h2 className="text-2xl font-bold tracking-wide mb-10">
+      <aside className="w-72 bg-gray-50 border-r border-gray-200 shadow-md flex flex-col p-6 overflow-y-auto">
+        {/* SECCIÓN EMPRESAS */}
+        <h2 className="text-2xl font-bold tracking-wide mb-8 text-gray-800">
           Empresas TVI
         </h2>
 
         {/* TSALES */}
         <button
           onClick={() => selectEmpresa("t")}
-          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-blue-100 hover:translate-x-2"
+          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-blue-100 hover:translate-x-2 group"
         >
-          <div className="w-12 h-12 rounded-lg bg-blue-500 shadow-lg flex items-center justify-center">
-            <img src="/img/T.jpg" className="w-10 h-10 rounded-md" />
+          <div className="w-12 h-12 rounded-lg bg-blue-500 shadow-lg flex items-center justify-center group-hover:shadow-blue-300">
+            <img src="/img/T.jpg" className="w-10 h-10 rounded-md" alt="T" />
           </div>
           <span className="font-semibold text-gray-700 text-lg">TSales</span>
         </button>
@@ -107,10 +125,10 @@ export default function SeleccionEmpresaPage() {
         {/* VPRIME */}
         <button
           onClick={() => selectEmpresa("v")}
-          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-red-100 hover:translate-x-2"
+          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-red-100 hover:translate-x-2 group"
         >
-          <div className="w-12 h-12 rounded-lg bg-red-500 shadow-lg flex items-center justify-center">
-            <img src="/img/V.jpg" className="w-10 h-10 rounded-md" />
+          <div className="w-12 h-12 rounded-lg bg-red-500 shadow-lg flex items-center justify-center group-hover:shadow-red-300">
+            <img src="/img/V.jpg" className="w-10 h-10 rounded-md" alt="V" />
           </div>
           <span className="font-semibold text-gray-700 text-lg">VPrime</span>
         </button>
@@ -118,35 +136,79 @@ export default function SeleccionEmpresaPage() {
         {/* INFINET */}
         <button
           onClick={() => selectEmpresa("i")}
-          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-yellow-100 hover:translate-x-2"
+          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-yellow-100 hover:translate-x-2 group"
         >
-          <div className="w-12 h-12 rounded-lg bg-yellow-500 shadow-lg flex items-center justify-center">
-            <img src="/img/I.jpg" className="w-10 h-10 rounded-md" />
+          <div className="w-12 h-12 rounded-lg bg-yellow-500 shadow-lg flex items-center justify-center group-hover:shadow-yellow-300">
+            <img src="/img/I.jpg" className="w-10 h-10 rounded-md" alt="I" />
           </div>
           <span className="font-semibold text-gray-700 text-lg">Infinet</span>
+        </button>
+
+        {/* ================= SEPARADOR Y ADMIN ================= */}
+
+        <div className="my-6 border-t border-gray-200"></div>
+
+        <h2 className="text-sm font-bold tracking-wider mb-6 text-gray-400 uppercase">
+          Administración
+        </h2>
+
+        {/* GESTIÓN DE PERSONAL */}
+        <button
+          onClick={() => navigate("/GestionPersonalPage")} // Ajusta la ruta según necesites
+          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-violet-100 hover:translate-x-2 group"
+        >
+          <div className="w-12 h-12 rounded-lg bg-violet-600 shadow-lg flex items-center justify-center text-white group-hover:shadow-violet-300">
+            <UserCog size={28} strokeWidth={2} />
+          </div>
+          <div className="flex flex-col items-start">
+            <span className="font-semibold text-gray-700 text-lg leading-tight">
+              Personal
+            </span>
+            <span className="text-xs text-gray-500 font-medium">
+              Gestión de Staff
+            </span>
+          </div>
+        </button>
+
+        {/* ROLES Y PERMISOS */}
+        <button
+          onClick={() => navigate("/admin/roles")} 
+          
+          className="flex items-center gap-4 p-4 rounded-xl mb-4 transition-all duration-300 hover:bg-indigo-100 hover:translate-x-2 group"
+        >
+          <div className="w-12 h-12 rounded-lg bg-indigo-600 shadow-lg flex items-center justify-center text-white group-hover:shadow-indigo-300">
+            <ShieldCheck size={28} strokeWidth={2} />
+          </div>
+          <div className="flex flex-col items-start">
+            <span className="font-semibold text-gray-700 text-lg leading-tight">
+              Seguridad
+            </span>
+            <span className="text-xs text-gray-500 font-medium">
+              Roles y Permisos
+            </span>
+          </div>
         </button>
       </aside>
 
       {/* ======================== PANEL DERECHO ======================== */}
       <main className="flex-1 p-12 overflow-y-auto animate-fadeIn">
-
         <h1 className="text-5xl font-extrabold mb-2 text-gray-900">
           Selección de Empresa
         </h1>
 
         <p className="text-gray-500 text-lg mb-12">
-          Panel ejecutivo — Compare rendimiento, productividad y crecimiento de TSales, VPrime e Infinet.
+          Panel ejecutivo — Compare rendimiento, productividad y crecimiento de
+          TSales, VPrime e Infinet.
         </p>
 
         {/* ======================== RESÚMENES DE EMPRESA ======================== */}
         <div className="grid grid-cols-3 gap-8 mb-14">
-
           {/* TSALES */}
           <div className="p-6 bg-white border border-blue-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
             <h3 className="text-2xl font-bold text-blue-600">TSales</h3>
             <p className="text-gray-500 mt-2">
-              Plataforma comercial enfocada en ventas directas, soporte a clientes,
-              facturación y productividad del área comercial.
+              Plataforma comercial enfocada en ventas directas, soporte a
+              clientes, facturación y productividad del área comercial.
             </p>
             <div className="mt-5 flex items-center gap-3">
               <TrendingUp className="text-blue-500" />
@@ -185,7 +247,6 @@ export default function SeleccionEmpresaPage() {
               </span>
             </div>
           </div>
-
         </div>
 
         {/* ======================== GRÁFICO 3D ======================== */}
@@ -198,18 +259,27 @@ export default function SeleccionEmpresaPage() {
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Crecimiento anual — Ventas de planes empresariales
           </h2>
-          <ReactApexChart options={crecimientoOpt} series={crecimientoSeries} type="area" height={250} />
+          <ReactApexChart
+            options={crecimientoOpt}
+            series={crecimientoSeries}
+            type="area"
+            height={250}
+          />
         </div>
 
         {/* ================= COMPETITIVIDAD ================= */}
         <div className="mt-14 grid grid-cols-2 gap-10">
-
           {/* DONUT */}
           <div className="bg-white border border-gray-200 rounded-xl shadow-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4">
               Participación de negocio
             </h2>
-            <ReactApexChart options={donutOpt} series={donutSeries} type="donut" height={260} />
+            <ReactApexChart
+              options={donutOpt}
+              series={donutSeries}
+              type="donut"
+              height={260}
+            />
           </div>
 
           {/* RADIAL */}
@@ -217,11 +287,14 @@ export default function SeleccionEmpresaPage() {
             <h2 className="text-xl font-bold text-gray-800 mb-4">
               Performance de Servicio (SLA - Calidad)
             </h2>
-            <ReactApexChart options={radialOpt} series={radialSeries} type="radialBar" height={260} />
+            <ReactApexChart
+              options={radialOpt}
+              series={radialSeries}
+              type="radialBar"
+              height={260}
+            />
           </div>
-
         </div>
-
       </main>
     </div>
   );

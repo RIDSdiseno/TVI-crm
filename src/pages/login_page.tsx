@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const fakeUsers = [
+  { email: "admin@tvi.cl", pass: "admin123", role: "admin" },
+  { email: "soporte@tvi.cl", pass: "1234", role: "soporte" },
+  { email: "ventas@tvi.cl", pass: "ventas", role: "comercial" },
+  { email: "root@system.dev", pass: "root123", role: "super" }, // 🔥 SUPER ADMIN
   { email: "admin@tvi.cl", pass: "admin123", role: "admin" },
   { email: "soporte@tvi.cl", pass: "1234", role: "soporte" },
   { email: "ventas@tvi.cl", pass: "ventas", role: "comercial" },
 ];
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
   const [showPwd, setShowPwd] = useState(false);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -16,24 +23,21 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const user = fakeUsers.find(
-      (u) => u.email === email && u.pass === pwd
-    );
+    const user = fakeUsers.find((u) => u.email === email && u.pass === pwd);
 
     if (!user) {
       setError("Credenciales incorrectas");
       return;
     }
 
-    localStorage.setItem("access_token", "TVI_OK");
-    localStorage.setItem("role", user.role);
+    // Guardar usuario completo
+    localStorage.setItem("user", JSON.stringify(user));
 
     window.location.href = "/seleccion-empresa";
   };
 
   return (
     <div className="h-screen w-full flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-100 via-red-50 to-yellow-50">
-
       {/* ANIMATED BACKGROUND CIRCLES */}
       <motion.div
         initial={{ scale: 0 }}
@@ -62,7 +66,10 @@ export default function LoginPage() {
         animate={{ opacity: 1, y: 0 }}
         className="relative z-10 w-[430px] bg-white rounded-2xl p-8 shadow-xl border border-gray-200"
       >
-        <img src="/img/TVI.jpg" className="w-24 mx-auto mb-4 rounded-xl shadow-lg" />
+        <img
+          src="/img/TVI.jpg"
+          className="w-24 mx-auto mb-4 rounded-xl shadow-lg"
+        />
 
         <h1 className="text-center text-2xl font-bold text-gray-700 mb-6 tracking-wide">
           Bienvenido a TVI
@@ -82,7 +89,9 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="text-gray-600 text-sm font-medium">Contraseña</label>
+            <label className="text-gray-600 text-sm font-medium">
+              Contraseña
+            </label>
             <div className="flex items-center mt-1 border rounded-xl border-gray-300 px-3">
               <input
                 type={showPwd ? "text" : "password"}
@@ -122,11 +131,19 @@ export default function LoginPage() {
         </div>
 
         <div className="flex justify-center gap-6 mt-4">
-          <img src="/img/T.jpg" className="w-12 h-12 rounded-lg shadow-md hover:scale-110 transition" />
-          <img src="/img/V.jpg" className="w-12 h-12 rounded-lg shadow-md hover:scale-110 transition" />
-          <img src="/img/I.jpg" className="w-12 h-12 rounded-lg shadow-md hover:scale-110 transition" />
+          <img
+            src="/img/T.jpg"
+            className="w-12 h-12 rounded-lg shadow-md hover:scale-110 transition"
+          />
+          <img
+            src="/img/V.jpg"
+            className="w-12 h-12 rounded-lg shadow-md hover:scale-110 transition"
+          />
+          <img
+            src="/img/I.jpg"
+            className="w-12 h-12 rounded-lg shadow-md hover:scale-110 transition"
+          />
         </div>
-
       </motion.div>
     </div>
   );
