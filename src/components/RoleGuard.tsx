@@ -1,9 +1,14 @@
-// src/components/ProtectedRoute.tsx
 import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export default function ProtectedRoute({ children }: { children: ReactNode }) {
+export default function RoleGuard({
+  allowedRoles,
+  children,
+}: {
+  allowedRoles: string[];
+  children: ReactNode;
+}) {
   const { usuario, cargando } = useAuth();
 
   if (cargando) {
@@ -16,6 +21,10 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
 
   if (!usuario) {
     return <Navigate to="/login" replace />;
+  }
+
+  if (!allowedRoles.includes(usuario.role)) {
+    return <Navigate to="/home" replace />;
   }
 
   return <>{children}</>;
